@@ -99,9 +99,19 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
   const renderContent = () => {
     switch ((value as any).datatype) {
       case 'string':
-        return <span>{(value as any).content}</span>;
+        return (
+          <div className="p-3 border border-gray-300 rounded-lg bg-white text-gray-800 min-h-fit h-fit">
+            {(value as any).content}
+          </div>
+        );
       case 'image':
-        return <img className="w-full h-3/4" src={(value as any).content} alt="AI generated" />;
+        return (
+          <img
+            className="rounded-lg w-full h-full shadow"
+            src={(value as any).content}
+            alt="AI generated"
+          />
+        );
       case 'table':
         return <>{renderList(value as any)}</>;
       default:
@@ -111,7 +121,7 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
 
   return (
     <div ref={connect} style={style} className={cn(className, classNames)}>
-      {value && renderContent()}
+      {value ? renderContent() : 'Waiting for response...'}
     </div>
   );
 };

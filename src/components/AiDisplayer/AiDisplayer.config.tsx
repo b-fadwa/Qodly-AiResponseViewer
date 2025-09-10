@@ -57,7 +57,10 @@ export default {
     },
   },
   defaultProps: {
-    name: 'Qodly',
+    style:{
+      width: '100%',
+      height: '500px',
+    }
   },
 } as T4DComponentConfig<IAiDisplayerProps>;
 
