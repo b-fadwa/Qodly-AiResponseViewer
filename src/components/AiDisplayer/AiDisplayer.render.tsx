@@ -61,20 +61,18 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
     if (!output.content || !output.content.length)
       return (
         <div className="p-2 flex flex-col">
-          <span>{output.content?.query}</span>
           <span>No data!</span>
         </div>
       );
     const headers = Object.keys(output.content[0]); //column names
     return (
-      <div className="h-[350px] w-full overflow-y-scroll overflow-x-auto shadow-md rounded-lg">
-        <span>{output?.query}</span>
-        <table className="table-auto min-w-full w-full border-collapse">
-          <thead className="thead">
-            <tr className="text-sm">
+      <div className="h-[550px] w-full overflow-y-auto overflow-x-auto shadow-md rounded-lg border border-gray-200 bg-white">
+        <table className=" table-auto min-w-full text-sm text-gray-700">
+          <thead className="sticky top-0 bg-gray-100 text-gray-900">
+            <tr>
               {headers.map((header) => (
                 <th
-                  className="   py-2 px-4 text-center font-semibold border border-gray-700"
+                  className="px-4 py-4 font-semibold text-center border-b border-gray-300"
                   key={header}
                 >
                   {header}
@@ -82,14 +80,12 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
               ))}
             </tr>
           </thead>
-          <tbody className="text-center">
+          <tbody>
             {output.content.map((row: any, rowIndex: any) => (
-              <tr className="text-center text-sm even:bg-gray-50 hover:bg-gray-100" key={rowIndex}>
+              <tr key={rowIndex}>
                 {headers.map((header) => (
-                  <td className=" border border-gray-700" key={header}>
-                    {typeof row[header] === 'object'
-                      ? JSON.stringify(row[header]) //nested object
-                      : row[header]}
+                  <td className="px-4 py-2 text-center border border-gray-200" key={header}>
+                    {typeof row[header] === 'object' ? JSON.stringify(row[header]) : row[header]}
                   </td>
                 ))}
               </tr>
@@ -99,7 +95,6 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
       </div>
     );
   };
-
 
   const renderContent = () => {
     switch ((value as any).datatype) {
