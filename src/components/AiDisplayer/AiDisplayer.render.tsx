@@ -16,7 +16,8 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
   type AIResponse =
     | { datatype: 'string'; content: string }
     | { datatype: 'image'; content: string }
-    | { datatype: 'table'; content: any };
+    | { datatype: 'table'; content: any }
+    | { datatype: 'svg'; content: any };
 
   useEffect(() => {
     if (!ds) return;
@@ -67,6 +68,11 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
     const headers = Object.keys(output.content[0]); //column names
     return (
       <div className="h-[550px] w-full overflow-y-auto overflow-x-auto shadow-md rounded-lg border border-gray-200 bg-white">
+        <div className="italic p-2 flex flex-col">
+          <span>Query: {output.query}</span>
+          <span>Data length: {output.content.length}</span>
+        </div>
+
         <table className=" table-auto min-w-full text-sm text-gray-700">
           <thead className="sticky top-0 bg-gray-100 text-gray-900">
             <tr>
@@ -85,6 +91,7 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
               <tr key={rowIndex}>
                 {headers.map((header) => (
                   <td className="px-4 py-2 text-center border border-gray-200" key={header}>
+                    {/* {console.log(typeof row[header])} */}
                     {typeof row[header] === 'object' ? JSON.stringify(row[header]) : row[header]}
                   </td>
                 ))}
@@ -114,6 +121,8 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
         );
       case 'table':
         return <>{renderList(value as any)}</>;
+      case 'svg':
+        return <div dangerouslySetInnerHTML={{ __html: (value as any).content }} />;
       default:
         return <span>Unsupported response type</span>;
     }
