@@ -24,6 +24,7 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
 
     const listener = async (/* event */) => {
       const v = await ds.getValue<AIResponse>();
+      if (!v) return;
       setValue(JSON.parse(v as any));
     };
 
@@ -67,7 +68,7 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
       );
     const headers = Object.keys(output.content[0]); //column names
     return (
-      <div className="h-[550px] w-full overflow-y-auto overflow-x-auto shadow-md rounded-lg border border-gray-200 bg-white">
+      <div style={{ maxHeight: "550px"}} className="datatable w-full overflow-y-auto overflow-x-auto shadow-md rounded-lg border border-gray-200 bg-white">
         <div className="italic p-2 flex flex-col">
           <span>Query: {output.query}</span>
           <span>Data length: {output.content.length}</span>
@@ -122,7 +123,7 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
       case 'table':
         return <>{renderList(value as any)}</>;
       case 'svg':
-        return <div dangerouslySetInnerHTML={{ __html: (value as any).content }} />;
+        return <div style={{ maxHeight: "550px"}} dangerouslySetInnerHTML={{ __html: (value as any).content }} />;
       default:
         return <span>Unsupported response type</span>;
     }

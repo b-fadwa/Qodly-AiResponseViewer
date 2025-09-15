@@ -57,10 +57,6 @@ export default {
     },
   },
   defaultProps: {
-    style:{
-      width: '100%',
-      height: '500px',
-    }
   },
 } as T4DComponentConfig<IAiDisplayerProps>;
 
