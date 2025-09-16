@@ -115,7 +115,7 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
       case 'image':
         return (
           <img
-            className="rounded-lg w-full h-full shadow"
+            className="rounded-lg w-[500px] h-full shadow"
             src={(value as any).content}
             alt="AI generated"
           />
