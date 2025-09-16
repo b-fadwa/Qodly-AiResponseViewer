@@ -4,42 +4,42 @@
     const importMap = {
       
         "react/jsx-runtime": async () => {
-          let pkg = await import("__mf__virtual/qodly_7e582bde2b0a3667eb82__prebuild__react_mf_1_jsx_mf_2_runtime__prebuild__.js")
+          let pkg = await import("__mf__virtual/qodly_c1da41931611abc9222f__prebuild__react_mf_1_jsx_mf_2_runtime__prebuild__.js")
           return pkg
         }
       ,
         "react": async () => {
-          let pkg = await import("__mf__virtual/qodly_7e582bde2b0a3667eb82__prebuild__react__prebuild__.js")
+          let pkg = await import("__mf__virtual/qodly_c1da41931611abc9222f__prebuild__react__prebuild__.js")
           return pkg
         }
       ,
         "react-dom": async () => {
-          let pkg = await import("__mf__virtual/qodly_7e582bde2b0a3667eb82__prebuild__react_mf_2_dom__prebuild__.js")
+          let pkg = await import("__mf__virtual/qodly_c1da41931611abc9222f__prebuild__react_mf_2_dom__prebuild__.js")
           return pkg
         }
       ,
         "@ws-ui/webform-editor": async () => {
-          let pkg = await import("__mf__virtual/qodly_7e582bde2b0a3667eb82__prebuild___mf_0_ws_mf_2_ui_mf_1_webform_mf_2_editor__prebuild__.js")
+          let pkg = await import("__mf__virtual/qodly_c1da41931611abc9222f__prebuild___mf_0_ws_mf_2_ui_mf_1_webform_mf_2_editor__prebuild__.js")
           return pkg
         }
       ,
         "@ws-ui/craftjs-core": async () => {
-          let pkg = await import("__mf__virtual/qodly_7e582bde2b0a3667eb82__prebuild___mf_0_ws_mf_2_ui_mf_1_craftjs_mf_2_core__prebuild__.js")
+          let pkg = await import("__mf__virtual/qodly_c1da41931611abc9222f__prebuild___mf_0_ws_mf_2_ui_mf_1_craftjs_mf_2_core__prebuild__.js")
           return pkg
         }
       ,
         "@ws-ui/shared": async () => {
-          let pkg = await import("__mf__virtual/qodly_7e582bde2b0a3667eb82__prebuild___mf_0_ws_mf_2_ui_mf_1_shared__prebuild__.js")
+          let pkg = await import("__mf__virtual/qodly_c1da41931611abc9222f__prebuild___mf_0_ws_mf_2_ui_mf_1_shared__prebuild__.js")
           return pkg
         }
       ,
         "@ws-ui/craftjs-layers": async () => {
-          let pkg = await import("__mf__virtual/qodly_7e582bde2b0a3667eb82__prebuild___mf_0_ws_mf_2_ui_mf_1_craftjs_mf_2_layers__prebuild__.js")
+          let pkg = await import("__mf__virtual/qodly_c1da41931611abc9222f__prebuild___mf_0_ws_mf_2_ui_mf_1_craftjs_mf_2_layers__prebuild__.js")
           return pkg
         }
       ,
         "@ws-ui/craftjs-utils": async () => {
-          let pkg = await import("__mf__virtual/qodly_7e582bde2b0a3667eb82__prebuild___mf_0_ws_mf_2_ui_mf_1_craftjs_mf_2_utils__prebuild__.js")
+          let pkg = await import("__mf__virtual/qodly_c1da41931611abc9222f__prebuild___mf_0_ws_mf_2_ui_mf_1_craftjs_mf_2_utils__prebuild__.js")
           return pkg
         }
       
@@ -51,7 +51,7 @@
             version: "17.0.2",
             scope: ["default"],
             loaded: false,
-            from: "qodly_7e582bde2b0a3667eb82",
+            from: "qodly_c1da41931611abc9222f",
             async get () {
               usedShared["react/jsx-runtime"].loaded = true
               const {"react/jsx-runtime": pkgDynamicImport} = importMap 
@@ -77,7 +77,7 @@
             version: "17.0.2",
             scope: ["default"],
             loaded: false,
-            from: "qodly_7e582bde2b0a3667eb82",
+            from: "qodly_c1da41931611abc9222f",
             async get () {
               usedShared["react"].loaded = true
               const {"react": pkgDynamicImport} = importMap 
@@ -103,7 +103,7 @@
             version: "17.0.2",
             scope: ["default"],
             loaded: false,
-            from: "qodly_7e582bde2b0a3667eb82",
+            from: "qodly_c1da41931611abc9222f",
             async get () {
               usedShared["react-dom"].loaded = true
               const {"react-dom": pkgDynamicImport} = importMap 
@@ -126,10 +126,10 @@
         ,
           "@ws-ui/webform-editor": {
             name: "@ws-ui/webform-editor",
-            version: "1.6.0",
+            version: "1.5.15",
             scope: ["default"],
             loaded: false,
-            from: "qodly_7e582bde2b0a3667eb82",
+            from: "qodly_c1da41931611abc9222f",
             async get () {
               usedShared["@ws-ui/webform-editor"].loaded = true
               const {"@ws-ui/webform-editor": pkgDynamicImport} = importMap 
@@ -146,7 +146,7 @@
             },
             shareConfig: {
               singleton: true,
-              requiredVersion: "^1.6.0"
+              requiredVersion: "^1.5.15"
             }
           }
         ,
@@ -155,7 +155,7 @@
             version: "0.2.26",
             scope: ["default"],
             loaded: false,
-            from: "qodly_7e582bde2b0a3667eb82",
+            from: "qodly_c1da41931611abc9222f",
             async get () {
               usedShared["@ws-ui/craftjs-core"].loaded = true
               const {"@ws-ui/craftjs-core": pkgDynamicImport} = importMap 
@@ -178,10 +178,10 @@
         ,
           "@ws-ui/shared": {
             name: "@ws-ui/shared",
-            version: "1.6.0",
+            version: "1.5.15",
             scope: ["default"],
             loaded: false,
-            from: "qodly_7e582bde2b0a3667eb82",
+            from: "qodly_c1da41931611abc9222f",
             async get () {
               usedShared["@ws-ui/shared"].loaded = true
               const {"@ws-ui/shared": pkgDynamicImport} = importMap 
@@ -198,7 +198,7 @@
             },
             shareConfig: {
               singleton: true,
-              requiredVersion: "^1.6.0"
+              requiredVersion: "^1.5.15"
             }
           }
         ,
@@ -207,7 +207,7 @@
             version: "0.2.4",
             scope: ["default"],
             loaded: false,
-            from: "qodly_7e582bde2b0a3667eb82",
+            from: "qodly_c1da41931611abc9222f",
             async get () {
               usedShared["@ws-ui/craftjs-layers"].loaded = true
               const {"@ws-ui/craftjs-layers": pkgDynamicImport} = importMap 
@@ -233,7 +233,7 @@
             version: "0.2.3",
             scope: ["default"],
             loaded: false,
-            from: "qodly_7e582bde2b0a3667eb82",
+            from: "qodly_c1da41931611abc9222f",
             async get () {
               usedShared["@ws-ui/craftjs-utils"].loaded = true
               const {"@ws-ui/craftjs-utils": pkgDynamicImport} = importMap 
