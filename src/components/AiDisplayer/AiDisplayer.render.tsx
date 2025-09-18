@@ -134,6 +134,25 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
         return <audio controls src={val.content} />;
       case 'moderation':
         return <ReactJson src={val.content} collapsed={false} />;
+      case 'fileOutput':
+        const dataUrl = 'data:text/plain;base64,' + val.content;
+        return (
+          <div className="flex flex-col gap-4">
+            <iframe
+              src={dataUrl}
+              className="w-full border-0"
+              style={{ height: '400px' }}
+              title="AI Generated File"
+            />
+            <a
+              href={dataUrl}
+              download="AI_file.txt"
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg w-fit"
+            >
+              Download File
+            </a>
+          </div>
+        );
       case 'multi':
         return (
           <div className="space-y-4">
