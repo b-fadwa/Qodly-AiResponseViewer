@@ -126,7 +126,7 @@
         ,
           "@ws-ui/webform-editor": {
             name: "@ws-ui/webform-editor",
-            version: "1.6.0",
+            version: "1.6.2",
             scope: ["default"],
             loaded: false,
             from: "qodly_7e582bde2b0a3667eb82",
@@ -146,7 +146,7 @@
             },
             shareConfig: {
               singleton: true,
-              requiredVersion: "^1.6.0"
+              requiredVersion: "^1.6.2"
             }
           }
         ,
@@ -178,7 +178,7 @@
         ,
           "@ws-ui/shared": {
             name: "@ws-ui/shared",
-            version: "1.6.0",
+            version: "1.6.2",
             scope: ["default"],
             loaded: false,
             from: "qodly_7e582bde2b0a3667eb82",
@@ -198,7 +198,7 @@
             },
             shareConfig: {
               singleton: true,
-              requiredVersion: "^1.6.0"
+              requiredVersion: "^1.6.2"
             }
           }
         ,

@@ -3,6 +3,7 @@ import cn from 'classnames';
 import { FC, useEffect, useState } from 'react';
 
 import { IAiDisplayerProps } from './AiDisplayer.config';
+import ReactJson from 'react-json-view';
 
 const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] }) => {
   const { connect } = useRenderer();
@@ -54,21 +55,30 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
   const renderList = (output: any) => {
     if (loading) {
       return (
-        <div className="p-2">
+        <div className="italic p-2 flex flex-col">
           <span>{output.query}</span>
-          <span className="italic">Loading...</span>
+          <span>Loading...</span>
         </div>
       );
     }
     if (!output.content || !output.content.length)
       return (
-        <div className="p-2 flex flex-col">
-          <span>No data!</span>
-        </div>
+        <>
+          <div className="italic p-2 flex flex-col">
+            <span>Query: {output.query}</span>
+            <span>Data length: {output.content.length}</span>
+          </div>
+          <div className="p-2 flex flex-col">
+            <span>No data!</span>
+          </div>
+        </>
       );
     const headers = Object.keys(output.content[0]); //column names
     return (
-      <div style={{ maxHeight: "550px"}} className="datatable w-full overflow-y-auto overflow-x-auto shadow-md rounded-lg border border-gray-200 bg-white">
+      <div
+        style={{ maxHeight: '550px' }}
+        className="datatable w-full overflow-y-auto overflow-x-auto shadow-md rounded-lg border border-gray-200 bg-white"
+      >
         <div className="italic p-2 flex flex-col">
           <span>Query: {output.query}</span>
           <span>Data length: {output.content.length}</span>
@@ -104,26 +114,65 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
     );
   };
 
-  const renderContent = () => {
-    switch ((value as any).datatype) {
+  const renderContent = (val: any): JSX.Element => {
+    switch (val.datatype) {
       case 'string':
         return (
           <div className="p-3 border border-gray-300 rounded-lg bg-white text-gray-800 min-h-fit h-fit">
-            {(value as any).content}
+            {val.content}
           </div>
         );
       case 'image':
         return (
           <img
             className="w-[500px] rounded-lg h-full shadow"
-            src={(value as any).content}
+            src={val.content}
             alt="AI generated"
           />
         );
       case 'table':
-        return <>{renderList(value as any)}</>;
+        return <>{renderList(val)}</>;
       case 'svg':
-        return <div style={{ maxHeight: "550px"}} dangerouslySetInnerHTML={{ __html: (value as any).content }} />;
+        return (
+          <div style={{ maxHeight: '550px' }} dangerouslySetInnerHTML={{ __html: val.content }} />
+        );
+      case 'audio': //not supported by 4d model
+        return <audio controls src={val.content} />;
+      case 'moderation':
+        return <ReactJson src={val.content} collapsed={false} />;
+      case 'fileOutput':
+        const dataUrl = 'data:text/plain;base64,' + val.content;
+        return (
+          <div className="flex flex-col gap-4">
+            <iframe
+              src={dataUrl}
+              className="w-full border-0"
+              style={{ height: '400px' }}
+              title="AI Generated File"
+            />
+            <a
+              href={dataUrl}
+              download="AI_file.txt"
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg w-fit"
+            >
+              Download File
+            </a>
+          </div>
+        );
+      case 'multi':
+        return (
+          <div className="space-y-4">
+            {Object.keys(val.outputs).map((dataType, id) => {
+              const item = val.outputs[dataType];
+              return (
+                <div key={id} className="p-2 border rounded">
+                  {renderContent(item)}
+                </div>
+              );
+            })}
+          </div>
+        );
+
       default:
         return <span>Unsupported response type</span>;
     }
@@ -131,7 +180,7 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
 
   return (
     <div ref={connect} style={style} className={cn(className, classNames)}>
-      {value ? renderContent() : 'Waiting for response...'}
+      {value ? renderContent(value) : 'Waiting for response...'}
     </div>
   );
 };
