@@ -63,9 +63,15 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
     }
     if (!output.content || !output.content.length)
       return (
-        <div className="p-2 flex flex-col">
-          <span>No data!</span>
-        </div>
+        <>
+          <div className="italic p-2 flex flex-col">
+            <span>Query: {output.query}</span>
+            <span>Data length: {output.content.length}</span>
+          </div>
+          <div className="p-2 flex flex-col">
+            <span>No data!</span>
+          </div>
+        </>
       );
     const headers = Object.keys(output.content[0]); //column names
     return (
@@ -160,7 +166,6 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
               const item = val.outputs[dataType];
               return (
                 <div key={id} className="p-2 border rounded">
-                  <h4 className="font-semibold mb-2">{dataType.toUpperCase()}</h4>
                   {renderContent(item)}
                 </div>
               );
