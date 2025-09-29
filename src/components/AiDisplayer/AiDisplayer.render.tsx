@@ -56,7 +56,6 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
     if (loading) {
       return (
         <div className="italic p-2 flex flex-col">
-          <span>{output.query}</span>
           <span>Loading...</span>
         </div>
       );
@@ -65,7 +64,6 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
       return (
         <>
           <div className="italic p-2 flex flex-col">
-            <span>Query: {output.query}</span>
             <span>Data length: {output.content.length}</span>
           </div>
           <div className="p-2 flex flex-col">
@@ -80,7 +78,6 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
         className="datatable w-full overflow-y-auto overflow-x-auto shadow-md rounded-lg border border-gray-200 bg-white"
       >
         <div className="italic p-2 flex flex-col">
-          <span>Query: {output.query}</span>
           <span>Data length: {output.content.length}</span>
         </div>
 
@@ -134,7 +131,7 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
         return <>{renderList(val)}</>;
       case 'svg':
         return (
-          <div style={{ maxHeight: '550px' }} dangerouslySetInnerHTML={{ __html: val.content }} />
+          <div style={{ maxHeight: '550px' , overflowX: 'scroll' , overflowY: 'scroll'}} dangerouslySetInnerHTML={{ __html: val.content }} />
         );
       case 'audio': //not supported by 4d model
         return <audio controls src={val.content} />;
