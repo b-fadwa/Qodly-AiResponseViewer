@@ -71,7 +71,10 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
           </div>
         </>
       );
-    const headers = Object.keys(output.content[0]); //column names
+    const headers =
+      output.requestedFields.length === 0
+        ? Object.keys(output.content[0])
+        : output.requestedFields.map((h: string) => h.trim());
     return (
       <div
         style={{ maxHeight: '550px' }}
@@ -84,7 +87,7 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
         <table className=" table-auto min-w-full text-sm text-gray-700">
           <thead className="sticky top-0 bg-gray-100 text-gray-900">
             <tr>
-              {headers.map((header) => (
+              {headers.map((header: any) => (
                 <th
                   className="px-4 py-4 font-semibold text-center border-b border-gray-300"
                   key={header}
@@ -97,9 +100,8 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
           <tbody>
             {output.content.map((row: any, rowIndex: any) => (
               <tr key={rowIndex}>
-                {headers.map((header) => (
+                {headers.map((header: any) => (
                   <td className="px-4 py-2 text-center border border-gray-200" key={header}>
-                    {/* {console.log(typeof row[header])} */}
                     {typeof row[header] === 'object' ? JSON.stringify(row[header]) : row[header]}
                   </td>
                 ))}
@@ -131,7 +133,10 @@ const AiDisplayer: FC<IAiDisplayerProps> = ({ style, className, classNames = [] 
         return <>{renderList(val)}</>;
       case 'svg':
         return (
-          <div style={{ maxHeight: '550px' , overflowX: 'scroll' , overflowY: 'scroll'}} dangerouslySetInnerHTML={{ __html: val.content }} />
+          <div
+            style={{ maxHeight: '550px', overflowX: 'scroll', overflowY: 'scroll' }}
+            dangerouslySetInnerHTML={{ __html: val.content }}
+          />
         );
       case 'audio': //not supported by 4d model
         return <audio controls src={val.content} />;
